@@ -1,4 +1,5 @@
 import { noop } from "lib/util"
+import { fetcher } from "lib/fetcher"
 
 export const MAX_USER_IMAGES = 3
 export const TAB_LABELS = ["Calendar", "Next Interviews"]
@@ -7,50 +8,7 @@ export const INTERVIEW_STATUS = {
   SCHEDULED: "Scheduled",
   DONE: "Done",
 }
-export const WAITING_CONFIRMATION_DROPDOWN_OPTIONS = [
-  {
-    label: "Send the request again",
-    onClick: noop,
-  },
-  {
-    label: "Cancel request",
-    onClick: noop,
-  },
-  {
-    label: "Set as Interview done",
-    onClick: noop,
-  },
-  {
-    label: "View calendar",
-    onClick: noop,
-  },
-  {
-    label: "Report a problem",
-    onClick: noop,
-  },
-]
-export const SCHEDULED_DROPDOWN_OPTIONS = [
-  {
-    label: "Re-schedule",
-    onClick: noop,
-  },
-  {
-    label: "Cancel request",
-    onClick: noop,
-  },
-  {
-    label: "Set as interview done",
-    onClick: noop,
-  },
-  {
-    label: "View calendar",
-    onClick: noop,
-  },
-  {
-    label: "Report a problem",
-    onClick: noop,
-  },
-]
+
 export const MOCK_DONE_INTERVIEWS = [
   {
     id: 2,
@@ -82,4 +40,24 @@ export const MOCK_DONE_INTERVIEWS = [
     image:
       "https://vanhackblobstorageprod.blob.core.windows.net/publicfiles/profile4.png",
   },
+]
+
+export const MOCK_JOB = {
+  company: "Driftwood decorp",
+  positions: "1 Position",
+  salary: "$CAD 100 - 140k",
+  location: "Remote",
+  skills: [
+    "Machine Learning",
+    "Signal R",
+    "Dapper",
+    "Tensorflow",
+    "JavaScript",
+  ],
+}
+
+export const INTERVIEW_LIST_HEADERS = [
+  "Candidate",
+  "Interview Step",
+  "Scheduled Time",
 ]

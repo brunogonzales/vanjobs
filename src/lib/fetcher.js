@@ -1,6 +1,11 @@
-export const fetcher = (...args) =>
-  fetch(...args, {
-    headers: {
-      Accept: "text/plain",
-    },
-  }).then((res) => res.json())
+export const fetcher = (url, options) =>
+  fetch(url, options)
+    .then((res) => res.text())
+    .then((body) => {
+      try {
+        return JSON.parse(body)
+      } catch {
+        return body
+      }
+    })
+    .catch(console.error)

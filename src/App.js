@@ -4,10 +4,12 @@ import cn from "classnames"
 import { fetcher } from "lib/fetcher"
 import {
   MAX_USER_IMAGES,
-  MOCK_DONE_INTERVIEWS,
   TAB_LABELS,
+  MOCK_DONE_INTERVIEWS,
+  MOCK_JOB,
 } from "lib/constants"
 import InterviewList from "components/InterviewList"
+import JobDetails from "components/JobDetails"
 
 function App() {
   const { data, error } = useSWR("/Calendar", fetcher)
@@ -21,29 +23,41 @@ function App() {
       ? data.filter((interview) => interview.status === "Scheduled")
       : [...data, ...MOCK_DONE_INTERVIEWS]
 
-  console.log(interviewsArray)
   return (
-    <div className="divide-y divide-gray-400">
+    <div className="divide-y divide-primary">
       <div className="flex items-center">
-        <h4 className="text-2xl px-11 py-6">
-          Principal Product Manager @Driftwood sidecorp
-        </h4>
+        <div className="flex space-x-3 items-center">
+          <h4 className="text-2xl pl-11 py-6 text-ink-light font-bold">
+            Principal Product Manager @Driftwood sidecorp
+          </h4>
+          <JobDetails job={MOCK_JOB} />
+        </div>
         <div className="ml-auto flex">
           <div className="flex items-center">
-            <button className="px-7 py-3 border border-blue-400 rounded text-blue-dark hover:bg-blue-dark hover:text-white">
+            <button
+              onClick={async () =>
+                alert(
+                  await fetcher("/Calendar/movenextstep/1", { method: "POST" })
+                )
+              }
+              className="px-7 py-3 border border-blue-400 rounded text-blue-dark hover:bg-blue-dark hover:text-white"
+            >
               Edit job
             </button>
           </div>
           <div className="flex pr-10 pl-6 items-center">
             {data.slice(0, 3).map((candidate) => {
               return (
-                <div className="w-8 h-8 rounded-full -ml-2" key={candidate.id}>
+                <div
+                  className="w-8 h-8 rounded-full border-white border-2 -ml-2"
+                  key={candidate.id}
+                >
                   <img src={candidate.image}></img>
                 </div>
               )
             })}
             {data.length > MAX_USER_IMAGES ? (
-              <div className="w-8 h-8 rounded-full -ml-2 bg-gray-300 flex items-center justify-center">
+              <div className="w-8 h-8 border font-bold border-white rounded-full -ml-2 bg-gray-300 flex items-center justify-center">
                 +{data.length + 1 - MAX_USER_IMAGES}
               </div>
             ) : null}
@@ -54,7 +68,7 @@ function App() {
         {TAB_LABELS.map((tabLabel) => (
           <p
             key={tabLabel}
-            className={cn("pb-3  cursor-pointer", {
+            className={cn("pb-3 cursor-pointer", {
               "border-b-2 border-blue-400 text-blue-400":
                 tabLabel === activeTab,
             })}
@@ -64,16 +78,7 @@ function App() {
           </p>
         ))}
       </div>
-      <div className="pt-11 bg-gray-light">
-        <div className="grid grid-cols-4 pl-11 ">
-          <p>Candidate</p>
-          <p>Interview Step</p>
-          <p>Scheduled Time</p>
-        </div>
-        <div className="pt-9">
-          <InterviewList interviews={interviewsArray} />
-        </div>
-      </div>
+      <InterviewList interviews={interviewsArray} />
     </div>
   )
 }
