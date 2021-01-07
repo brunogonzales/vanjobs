@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Inter Regular";
+  src: local("Inter"), url("./fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Inter Bold";
+  src: local("Inter"), url("./fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: normal;
+}
+
+body {
+  font-family: "Inter";
+}
