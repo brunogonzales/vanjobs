@@ -24,6 +24,7 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
+  "proxy": "https://api-test.vanhack.dev",
   "eslintConfig": {
     "extends": [
       "react-app",

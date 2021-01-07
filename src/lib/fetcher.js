@@ -1,1 +1,6 @@
-export const fetcher = (...args) => fetch(...args).then((res) => res.json())
+export const fetcher = (...args) =>
+  fetch(...args, {
+    headers: {
+      Accept: "text/plain",
+    },
+  }).then((res) => res.json())

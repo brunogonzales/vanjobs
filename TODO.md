@@ -1,3 +1,3 @@
 - [x] Fetch API
-- [ ] Candidate thumbails
+- [x] Candidate thumbails
 - [ ] Candidate list
