@@ -36,7 +36,12 @@ export const SCHEDULED_DROPDOWN_OPTIONS = ({ interview }) => [
   },
   {
     label: "Set as interview done",
-    onClick: noop,
+    onClick: async () =>
+      alert(
+        await fetcher(`/Calendar/movenextstep/${interview.id}`, {
+          method: "POST",
+        })
+      ),
   },
   {
     label: "View calendar",

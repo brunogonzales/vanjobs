@@ -47,10 +47,13 @@ function ListHeading({ children }) {
 function Waiting({ interviews }) {
   if (!interviews.length) return null
   return (
-    <div className="flex flex-col space-y-7">
+    <div className="flex flex-col">
       <ListHeading>Waiting Confirmation</ListHeading>
       {interviews.map((interview) => (
-        <div className="grid grid-cols-5 items-center pl-11" key={interview.id}>
+        <div
+          className="grid grid-cols-5 items-center py-4 pl-11"
+          key={interview.id}
+        >
           <Candidate
             name={interview.name}
             title={interview.title}
@@ -97,7 +100,7 @@ function Scheduled({ interviews }) {
             onClick={async () =>
               alert(await fetcher(`/Calendar/interviewlink/${interview.id}`))
             }
-            className="border rounded text-blue-dark h-7 px-4 flex items-center 
+            className="border rounded text-blue-dark py-1 px-4 flex items-center 
             border-blue-dark 
             w-max text-sm 
             cursor-pointer"
@@ -144,7 +147,7 @@ function Done({ interviews }) {
                   })
                 )
               }
-              className="border rounded text-blue-dark px-4 flex items-center border-blue-dark w-max text-sm cursor-pointer"
+              className="border rounded text-blue-dark px-4 flex items-center border-blue-dark w-max text-sm cursor-pointer py-1"
             >
               Move to the next step
             </div>
