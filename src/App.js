@@ -1,8 +1,10 @@
 import useSWR from "swr"
+import { fetcher } from "lib/fetcher"
 
 function App() {
   const { data, loading, error } = useSWR(
-    "https://api-test.vanhack.dev/Calendar"
+    "https://api-test.vanhack.dev/Calendar",
+    fetcher
   )
   return (
     <div class="flex align-center">
