@@ -26,7 +26,9 @@ export default function InterviewList({ interviews }) {
     <div className="pt-11 bg-gray-light pb-11">
       <div className="grid grid-cols-5 pl-11  align-center justify-center ">
         {INTERVIEW_LIST_HEADERS.map((header) => (
-          <p className="text-gray-dark">{header}</p>
+          <p className="text-gray-dark" key={header}>
+            {header}
+          </p>
         ))}
       </div>
       <div className="pt-9">
